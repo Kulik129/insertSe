@@ -23,13 +23,37 @@ public class Query {
     public void queryP()throws SQLException{
         DBProcessor dbProcessor = new DBProcessor();
         Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
-        String query = "SELECT * FROM salary.salary_dec";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        String SELECT = "SELECT * FROM salary.salary_dec";
+        String DELETE = "DELETE FROM salary_dec WHERE shop = ?";
+        String INSERT = "INSERT INTO salary.salary_dec (shop) VALUES (?)";
+        PreparedStatement preparedSt = connection.prepareStatement(DELETE);
+        preparedSt.setString(1,"wth");
+        preparedSt.execute();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()){
-            System.out.println(resultSet.getString("shop"));
+            System.out.println(resultSet.getInt("id")+"\t"+resultSet.getString("shop"));
         }
         preparedStatement.close();
+        connection.close();
+    }
+    public void createTable()throws SQLException{
+        DBProcessor dbProcessor = new DBProcessor();
+        Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
+        String CREATE = "CREATE TABLE salary_jan\n" +
+                "\n" +
+                "(\n" +
+                "\t`id` INT AUTO_INCREMENT PRIMARY KEY,\n" +
+                "    `shop` VARCHAR(45),\n" +
+                "    `date` DATE,\n" +
+                "    `onHand` INT,\n" +
+                "    `inSalary` INT,\n" +
+                "    `total` INT\n" +
+                ");";
+        PreparedStatement preparedSt = connection.prepareStatement(CREATE);
+        preparedSt.execute();
+
         connection.close();
     }
 }
