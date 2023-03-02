@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Query {
     public void query() throws SQLException {
@@ -21,6 +18,18 @@ public class Query {
             System.out.println(salary);
         }
         statement.close();
+        connection.close();
+    }
+    public void queryP()throws SQLException{
+        DBProcessor dbProcessor = new DBProcessor();
+        Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
+        String query = "SELECT * FROM salary.salary_dec";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            System.out.println(resultSet.getString("shop"));
+        }
+        preparedStatement.close();
         connection.close();
     }
 }
