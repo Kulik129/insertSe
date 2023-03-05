@@ -19,13 +19,12 @@ public class Salary {
 
     @Override
     public String toString() {
-        return "Salary{" +
+        return
                 "id=" + id +
-                ", shop='" + shop + '\'' +
-                ", date='" + date + '\'' +
-                ", onHand=" + onHand +
-                ", inSalary=" + inSalary +
-                ", total=" + total +
-                '}';
+                ", магазин: '" + shop +
+                ", дата: '" + date +
+                ", на руки: " + onHand +
+                ", в зарплату: " + inSalary +
+                ", всего: " + total;
     }
 }

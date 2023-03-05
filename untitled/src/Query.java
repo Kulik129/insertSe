@@ -1,10 +1,40 @@
 import java.sql.*;
 
 public class Query {
-    public void query() throws SQLException {
-        DBProcessor dbProcessor = new DBProcessor();
-        Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
-        String query = "SELECT * FROM salary.salary_dec";
+    Aaaaa a = new Aaaaa();
+
+    DBProcessor dbProcessor = new DBProcessor();
+    Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
+    public Query() throws SQLException {
+    }
+    public void insert(String INSERT, String shop, String date, int salary) throws SQLException {
+        PreparedStatement preparedSt = connection.prepareStatement(INSERT);
+        preparedSt.setString(1, shop);
+        preparedSt.setString(2, date);
+        preparedSt.setInt(3, salary);
+        preparedSt.executeUpdate();
+    }
+    public void createTable() throws SQLException {
+        String CREATE = "(\n" +
+                "\t`id` INT AUTO_INCREMENT PRIMARY KEY,\n" +
+                "    `shop` VARCHAR(45),\n" +
+                "    `date` DATE,\n" +
+                "    `onHand` INT,\n" +
+                "    `inSalary` INT,\n" +
+                "    `total` INT\n" +
+                ");";
+        PreparedStatement preparedSt = connection.prepareStatement(CREATE);
+        preparedSt.execute();
+
+        connection.close();
+    }
+    public void delete(String query, String whyDelete) throws SQLException {
+
+        PreparedStatement preparedSt = connection.prepareStatement(query);
+        preparedSt.setString(1, whyDelete);
+        preparedSt.executeUpdate();
+    }
+    public void outputtingAll(String query) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         while (resultSet.next()) {
@@ -18,42 +48,6 @@ public class Query {
             System.out.println(salary);
         }
         statement.close();
-        connection.close();
-    }
-    public void queryP()throws SQLException{
-        DBProcessor dbProcessor = new DBProcessor();
-        Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
-        String SELECT = "SELECT * FROM salary.salary_dec";
-        String DELETE = "DELETE FROM salary_dec WHERE shop = ?";
-        String INSERT = "INSERT INTO salary.salary_dec (shop) VALUES (?)";
-        PreparedStatement preparedSt = connection.prepareStatement(DELETE);
-        preparedSt.setString(1,"wth");
-        preparedSt.execute();
-
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()){
-            System.out.println(resultSet.getInt("id")+"\t"+resultSet.getString("shop"));
-        }
-        preparedStatement.close();
-        connection.close();
-    }
-    public void createTable()throws SQLException{
-        DBProcessor dbProcessor = new DBProcessor();
-        Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
-        String CREATE = "CREATE TABLE salary_jan\n" +
-                "\n" +
-                "(\n" +
-                "\t`id` INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                "    `shop` VARCHAR(45),\n" +
-                "    `date` DATE,\n" +
-                "    `onHand` INT,\n" +
-                "    `inSalary` INT,\n" +
-                "    `total` INT\n" +
-                ");";
-        PreparedStatement preparedSt = connection.prepareStatement(CREATE);
-        preparedSt.execute();
-
         connection.close();
     }
 }

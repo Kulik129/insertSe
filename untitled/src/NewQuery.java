@@ -1,15 +1,28 @@
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class NewQuery extends Query{
+public class NewQuery extends Query {
     public NewQuery() throws SQLException {
     }
 
-    public void insert(String INS) throws SQLException {
-        preparedSt.setString(1,"Plaza");
-        preparedSt.setString(2,"12.12.1212");
-        preparedSt.setInt(3,232323);
-        preparedSt.setInt(4,232323);
+
+    public void insert(String INSERT, String shop, String date, int inSalary, int total) throws SQLException {
+        PreparedStatement preparedSt = connection.prepareStatement(INSERT);
+        preparedSt.setString(1, shop);
+        preparedSt.setString(2, date);
+        preparedSt.setInt(3, inSalary);
+        preparedSt.setInt(4, total);
+        preparedSt.executeUpdate();
+    }
+
+    public void insert5parameters(String INSERT, String shop, String date, int onHand, int inSalary, int total) throws SQLException {
+        PreparedStatement preparedSt = connection.prepareStatement(INSERT);
+        preparedSt.setString(1, shop);
+        preparedSt.setString(2, date);
+        preparedSt.setInt(3, onHand);
+        preparedSt.setInt(4, inSalary);
+        preparedSt.setInt(5, total);
         preparedSt.executeUpdate();
     }
 }
