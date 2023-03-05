@@ -1,8 +1,6 @@
 import java.sql.*;
 
 public class Query {
-    Aaaaa a = new Aaaaa();
-
     DBProcessor dbProcessor = new DBProcessor();
     Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
     public Query() throws SQLException {
@@ -41,8 +39,8 @@ public class Query {
             int id = resultSet.getInt("id");
             String shop = resultSet.getString("shop");
             String date = resultSet.getString("date");
-            int onHand = resultSet.getInt("on_hand");
-            int inSalary = resultSet.getInt("in_salary");
+            int onHand = resultSet.getInt("onHand");
+            int inSalary = resultSet.getInt("inSalary");
             int total = resultSet.getInt("total");
             Salary salary = new Salary(id, shop, date, onHand, inSalary, total);
             System.out.println(salary);
