@@ -17,6 +17,7 @@ public class NewQuery extends Query {
         preparedSt.executeUpdate();
     }
 
+
     public void insert5parameters(String INSERT, String shop, String date, int onHand, int inSalary, int total) throws SQLException {
         PreparedStatement preparedSt = connection.prepareStatement(INSERT);
         preparedSt.setString(1, shop);
@@ -25,11 +26,5 @@ public class NewQuery extends Query {
         preparedSt.setInt(4, inSalary);
         preparedSt.setInt(5, total);
         preparedSt.executeUpdate();
-    }
-
-    public void ds(){
-        Salary cc = new Salary(1,"as","wq",3,4,5);
-
-
     }
 }

@@ -1,18 +1,22 @@
 package DatabaseQueries;
 
-public class ShopIn extends Shop{
+public class ShopIn extends Shop {
     private int total;
-    public ShopIn(String shop, int onHand, int total ){
-        super(shop,onHand);
-        this.total=total;
+
+    public int getTotal() {
+        return total;
     }
-    Shop s =  new Shop();
+
+    public ShopIn(String shop, int onHand, int total) {
+        super(shop, onHand);
+        this.total = total;
+    }
+
     @Override
     public String toString() {
-        return "DatabaseQueries.ShopIn{" +
-                "total=" + total +
-                ", shop='" + s.getShop() + '\'' +
-                ", onHand=" + s.getOnHand() +
-                '}';
+        return
+                "Магазин: " + shop +
+                        " З/п на руки: " + onHand +
+                        " з/п за весь день: " + total;
     }
 }

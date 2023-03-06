@@ -1,5 +1,7 @@
 package Menu;
 
+import DatabaseQueries.NewQuery;
+
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -37,7 +39,7 @@ public class Menu {
                 newQuery.insert(INSERT, shop, date, inSalary);
                 System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
-                if (ch.equals("y")){
+                if (ch.equals("y")) {
                     navigation();
                 }
 
@@ -47,7 +49,7 @@ public class Menu {
                 newQuery.outputtingAll(select);
                 System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
-                if (ch.equals("y")){
+                if (ch.equals("y")) {
                     navigation();
                 }
 
@@ -58,7 +60,7 @@ public class Menu {
                 String sh = in.next();
                 newQuery.delete(delete, sh);
                 String ch = in.next();
-                if (ch.equals("y")){
+                if (ch.equals("y")) {
                     navigation();
                 }
             }
@@ -77,7 +79,7 @@ public class Menu {
                 newQuery.insert5parameters(INSERT, shop, date, onHand, inSalary, total);
                 System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
-                if (ch.equals("y")){
+                if (ch.equals("y")) {
                     navigation();
                 }
 

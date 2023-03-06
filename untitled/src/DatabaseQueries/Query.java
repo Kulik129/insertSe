@@ -8,8 +8,10 @@ import java.sql.*;
 public class Query {
     DBProcessor dbProcessor = new DBProcessor();
     Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
+
     public Query() throws SQLException {
     }
+
     public void insert(String INSERT, String shop, String date, int salary) throws SQLException {
         PreparedStatement preparedSt = connection.prepareStatement(INSERT);
         preparedSt.setString(1, shop);
@@ -17,6 +19,7 @@ public class Query {
         preparedSt.setInt(3, salary);
         preparedSt.executeUpdate();
     }
+
     public void createTable() throws SQLException {
         String CREATE = "(\n" +
                 "\t`id` INT AUTO_INCREMENT PRIMARY KEY,\n" +
@@ -31,12 +34,14 @@ public class Query {
 
         connection.close();
     }
+
     public void delete(String query, String whyDelete) throws SQLException {
 
         PreparedStatement preparedSt = connection.prepareStatement(query);
         preparedSt.setString(1, whyDelete);
         preparedSt.executeUpdate();
     }
+
     public void outputtingAll(String query) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -53,6 +58,7 @@ public class Query {
         statement.close();
         connection.close();
     }
+
     public void outputShopTotalOnHand() throws SQLException {
         String query = "select shop, onHand, total from salary_jan";
         Statement statement = connection.createStatement();

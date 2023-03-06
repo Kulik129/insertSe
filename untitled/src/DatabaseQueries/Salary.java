@@ -8,7 +8,8 @@ public class Salary {
     private int inSalary;
     private int total;
 
-    public Salary() {}
+    public Salary() {
+    }
 
     public Salary(int id, String shop, String date, int onHand, int inSalary, int total) {
         this.id = id;
@@ -23,10 +24,10 @@ public class Salary {
     public String toString() {
         return
                 "id=" + id +
-                ", магазин: '" + shop +
-                ", дата: '" + date +
-                ", на руки: " + onHand +
-                ", в зарплату: " + inSalary +
-                ", всего: " + total;
+                        ", магазин: '" + shop +
+                        ", дата: '" + date +
+                        ", на руки: " + onHand +
+                        ", в зарплату: " + inSalary +
+                        ", всего: " + total;
     }
 }
