@@ -1,3 +1,5 @@
+package ConnectDB;
+
 public class Connect {
     private static String url = "jdbc:mysql://localhost:3306/salary";
     private static String user = "root";

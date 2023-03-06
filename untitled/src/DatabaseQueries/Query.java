@@ -1,3 +1,8 @@
+package DatabaseQueries;
+
+import ConnectDB.Connect;
+import ConnectDB.DBProcessor;
+
 import java.sql.*;
 
 public class Query {
@@ -48,4 +53,20 @@ public class Query {
         statement.close();
         connection.close();
     }
+    public void outputShopTotalOnHand() throws SQLException {
+        String query = "select shop, onHand, total from salary_jan";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        while (resultSet.next()) {
+            String shop = resultSet.getString("shop");
+            int onHand = resultSet.getInt("onHand");
+            int total = resultSet.getInt("total");
+            ShopIn salary = new ShopIn(shop, onHand, total);
+            System.out.println(salary);
+        }
+        statement.close();
+        connection.close();
+    }
+
 }

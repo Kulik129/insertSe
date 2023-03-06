@@ -1,3 +1,5 @@
+package DatabaseQueries;
+
 public class Salary {
     private int id;
     private String shop;

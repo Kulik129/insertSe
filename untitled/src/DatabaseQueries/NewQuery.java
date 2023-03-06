@@ -1,3 +1,4 @@
+package DatabaseQueries;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -24,5 +25,11 @@ public class NewQuery extends Query {
         preparedSt.setInt(4, inSalary);
         preparedSt.setInt(5, total);
         preparedSt.executeUpdate();
+    }
+
+    public void ds(){
+        Salary cc = new Salary(1,"as","wq",3,4,5);
+
+
     }
 }
