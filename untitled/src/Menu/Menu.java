@@ -20,29 +20,21 @@ public class Menu {
                             "+-----------------------------------------------------+\n" +
                             "\tНажмите 3 если желаете удалить\n" +
                             "+-----------------------------------------------------+\n" +
-                            "\tНажмите 4 для заполнения всех столбцов\n" +
+                            "\tНажмите 4 для чтобы посмотреть з/п на руки и всего за день\n" +
                             "+-----------------------------------------------------+\n");
             int choice = in.nextInt();
 
 
             if (choice == 1) {
-                String INSERT = "INSERT INTO salary.salary_jan (shop, date, inSalary) VALUES (?,?,?)";
+                Scanner inn = new Scanner(System.in);
+                In i = new In();
+                i.dataEntry(inn);
+                System.out.println("Нажмите 1 если желаете продолжить заполнять таблицу");
+                int ch = in.nextInt();
+                if (ch==1) {
+                    i.dataEntry(inn);
 
-                System.out.println("введите имя магазина");
-                String shop = in.next();
-                System.out.println("Ведите год-месяц-дату:");
-
-                String date = in.next();
-                System.out.println("введите зп");
-
-                int inSalary = in.nextInt();
-                newQuery.insert(INSERT, shop, date, inSalary);
-                System.out.println("Нажмите Y если желаете продолжить");
-                String ch = in.next();
-                if (ch.equals("y")) {
-                    navigation();
                 }
-
             }
             if (choice == 2) {
                 String select = "SELECT * FROM salary_jan";
@@ -59,30 +51,20 @@ public class Menu {
                 System.out.println("введите название магазина");
                 String sh = in.next();
                 newQuery.delete(delete, sh);
+                System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
                 if (ch.equals("y")) {
                     navigation();
                 }
             }
             if (choice == 4) {
-                String INSERT = "INSERT INTO salary.salary_jan (shop,date,onHand,inSalary,total) VALUES (?,?,?,?,?)";
-                System.out.println("Введите название магазина");
-                String shop = in.next();
-                System.out.println("Ведите год-месяц-дату: ");
-                String date = in.next();
-                System.out.println("Введите зп на руки");
-                int onHand = in.nextInt();
-                System.out.println("Введите сумму которая ушла в зп");
-                int inSalary = in.nextInt();
-                int total = onHand + inSalary;
-                System.out.println("з/п за день = " + total);
-                newQuery.insert5parameters(INSERT, shop, date, onHand, inSalary, total);
+                NewQuery qw = new NewQuery();
+                qw.outputShopTotalOnHand();
                 System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
                 if (ch.equals("y")) {
                     navigation();
                 }
-
             }
         } catch (InputMismatchException e) {
             System.out.println("!!!!");

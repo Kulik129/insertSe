@@ -15,8 +15,8 @@ public class ShopIn extends Shop {
     @Override
     public String toString() {
         return
-                "Магазин: " + shop +
-                        " З/п на руки: " + onHand +
-                        " з/п за весь день: " + total;
+                "Магазин: " + shop +"|"+
+                        " З/п на руки: " + onHand + "|"+
+                        " з/п за весь день: " + total+"|";
     }
 }
