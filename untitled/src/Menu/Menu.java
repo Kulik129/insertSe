@@ -26,15 +26,8 @@ public class Menu {
 
 
             if (choice == 1) {
-                Scanner inn = new Scanner(System.in);
                 In i = new In();
-                i.dataEntry(inn);
-                System.out.println("Нажмите 1 если желаете продолжить заполнять таблицу");
-                int ch = in.nextInt();
-                if (ch==1) {
-                    i.dataEntry(inn);
-
-                }
+                i.dataEntry();
             }
             if (choice == 2) {
                 String select = "SELECT * FROM salary_jan";
@@ -44,7 +37,6 @@ public class Menu {
                 if (ch.equals("y")) {
                     navigation();
                 }
-
             }
             if (choice == 3) {
                 String delete = "DELETE FROM salary_jan WHERE shop = ?";
@@ -70,6 +62,5 @@ public class Menu {
             System.out.println("!!!!");
             navigation();
         }
-
     }
 }

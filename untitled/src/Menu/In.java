@@ -5,9 +5,10 @@ import DatabaseQueries.NewQuery;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class In {
-    public void dataEntry(Scanner inn) throws SQLException {
+public class In extends Menu {
+    public void dataEntry() throws SQLException {
         NewQuery newQuery = new NewQuery();
+        Scanner inn = new Scanner(System.in);
         String INSERT = "INSERT INTO salary.salary_jan (shop,date,onHand,inSalary,total) VALUES (?,?,?,?,?)";
         System.out.println("Введите название магазина: ");
         String shop = inn.nextLine();
@@ -20,5 +21,21 @@ public class In {
         int total = onHand + inSalary;
         System.out.println("з/п за день = " + total);
         newQuery.insert5parameters(INSERT, shop, date, onHand, inSalary, total);
+        yes_no();
+    }
+
+    public void yes_no() throws SQLException {
+        Scanner iScanner1 = new Scanner(System.in);
+        System.out.println("Введите ДА если хотите продолжить!\nВведите НЕТ если хотите остановить!");
+        String message = iScanner1.next();
+        switch (message.toLowerCase()) {
+            case "да":
+                dataEntry();
+                break;
+            case "нет":
+                navigation();
+                break;
+        }
+        iScanner1.close();
     }
 }
