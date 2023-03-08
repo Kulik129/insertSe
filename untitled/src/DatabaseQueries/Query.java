@@ -21,20 +21,14 @@ public class Query implements Create {
         connection.close();
     }
 
-    public void insert(String INSERT, String shop, String date, int salary) throws SQLException {
-        PreparedStatement preparedSt = connection.prepareStatement(INSERT);
-        preparedSt.setString(1, shop);
-        preparedSt.setString(2, date);
-        preparedSt.setInt(3, salary);
-        preparedSt.executeUpdate();
-    }
+    @Override
     public void delete(String query, String whyDelete) throws SQLException {
-
         PreparedStatement preparedSt = connection.prepareStatement(query);
         preparedSt.setString(1, whyDelete);
         preparedSt.executeUpdate();
     }
 
+    @Override
     public void outputtingAll(String query) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -51,6 +45,16 @@ public class Query implements Create {
         statement.close();
         connection.close();
     }
+
+
+    public void insert(String INSERT, String shop, String date, int salary) throws SQLException {
+        PreparedStatement preparedSt = connection.prepareStatement(INSERT);
+        preparedSt.setString(1, shop);
+        preparedSt.setString(2, date);
+        preparedSt.setInt(3, salary);
+        preparedSt.executeUpdate();
+    }
+
 
     public void outputShopTotalOnHand() throws SQLException {
         String query = "select shop, onHand, total from salary_jan";
