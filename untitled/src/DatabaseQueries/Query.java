@@ -2,14 +2,23 @@ package DatabaseQueries;
 
 import ConnectDB.Connect;
 import ConnectDB.DBProcessor;
+import Menu.Create;
 
 import java.sql.*;
 
-public class Query {
+public class Query implements Create {
     DBProcessor dbProcessor = new DBProcessor();
     Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
 
     public Query() throws SQLException {
+    }
+
+    @Override
+    public void create() throws SQLException {
+        String CREATE = " CREATE TABLE salary_feb(`id` INT AUTO_INCREMENT PRIMARY KEY,`shop` VARCHAR(45),`date` DATE,`onHand` INT,`inSalary` INT,`total` INT)";
+        PreparedStatement preparedSt = connection.prepareStatement(CREATE);
+        preparedSt.execute();
+        connection.close();
     }
 
     public void insert(String INSERT, String shop, String date, int salary) throws SQLException {
@@ -19,22 +28,6 @@ public class Query {
         preparedSt.setInt(3, salary);
         preparedSt.executeUpdate();
     }
-
-    public void createTable() throws SQLException {
-        String CREATE = "(\n" +
-                "\t`id` INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                "    `shop` VARCHAR(45),\n" +
-                "    `date` DATE,\n" +
-                "    `onHand` INT,\n" +
-                "    `inSalary` INT,\n" +
-                "    `total` INT\n" +
-                ");";
-        PreparedStatement preparedSt = connection.prepareStatement(CREATE);
-        preparedSt.execute();
-
-        connection.close();
-    }
-
     public void delete(String query, String whyDelete) throws SQLException {
 
         PreparedStatement preparedSt = connection.prepareStatement(query);
@@ -74,5 +67,4 @@ public class Query {
         statement.close();
         connection.close();
     }
-
 }

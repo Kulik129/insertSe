@@ -1,6 +1,7 @@
 package Menu;
 
 import DatabaseQueries.NewQuery;
+import DatabaseQueries.Query;
 
 import java.sql.SQLException;
 import java.util.InputMismatchException;
