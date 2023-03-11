@@ -5,6 +5,8 @@ import ConnectDB.DBProcessor;
 import Menu.Create;
 
 import java.sql.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class Query implements Create {
     DBProcessor dbProcessor = new DBProcessor();
@@ -67,6 +69,21 @@ public class Query implements Create {
             int total = resultSet.getInt("total");
             ShopIn salary = new ShopIn(shop, onHand, total);
             System.out.println(salary);
+        }
+        statement.close();
+        connection.close();
+    }
+
+    @Override
+    public void totalSalary() throws SQLException {
+        String totalS = "select sum(total) from salary_jan";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(totalS);
+        while (resultSet.next()) {
+            int total = resultSet.getInt("sum(total)");
+
+            Total totalSalary = new Total(total);
+            System.out.println(totalSalary);
         }
         statement.close();
         connection.close();
