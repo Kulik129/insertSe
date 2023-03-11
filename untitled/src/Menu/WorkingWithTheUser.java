@@ -5,7 +5,10 @@ import DatabaseQueries.NewQuery;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class In extends Menu {
+public class WorkingWithTheUser extends Menu implements Create {
+    NewQuery newQuery = new NewQuery();
+    public WorkingWithTheUser() throws SQLException {
+    }
     public void dataEntry() throws SQLException {
         NewQuery newQuery = new NewQuery();
         Scanner inn = new Scanner(System.in);
@@ -24,9 +27,37 @@ public class In extends Menu {
         yes_no();
     }
 
+    @Override
+    public void outputAll() throws SQLException {
+        String select = "SELECT * FROM salary_jan";
+        Scanner in = new Scanner(System.in);
+        newQuery.outputtingAll(select);
+        System.out.println("Нажмите Y если желаете продолжить");
+        String ch = in.next();
+        if (ch.equals("y")) {
+            navigation();
+        }
+        in.close();
+    }
+
+    @Override
+    public void deleteString() throws SQLException {
+        String delete = "DELETE FROM salary_jan WHERE shop = ?";
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите название магазина");
+        String sh = in.next();
+        newQuery.delete(delete, sh);
+        System.out.println("Нажмите Y если желаете продолжить");
+        String ch = in.next();
+        if (ch.equals("y")) {
+            navigation();
+        }
+        in.close();
+    }
+
     public void yes_no() throws SQLException {
         Scanner iScanner1 = new Scanner(System.in);
-        System.out.println("Введите ДА если хотите продолжить!\nВведите НЕТ если хотите остановить!");
+        System.out.println("Введите ДА если хотите продолжить заполнять таблицу!\nВведите НЕТ для выхода в меню!");
         String message = iScanner1.next();
         switch (message.toLowerCase()) {
             case "да":
