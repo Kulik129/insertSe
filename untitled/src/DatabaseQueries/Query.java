@@ -2,13 +2,11 @@ package DatabaseQueries;
 
 import ConnectDB.Connect;
 import ConnectDB.DBProcessor;
-import Menu.Create;
 
 import java.sql.*;
-import java.util.Arrays;
-import java.util.List;
 
-public class Query implements Create {
+
+public class Query implements CreateQuery {
     DBProcessor dbProcessor = new DBProcessor();
     Connection connection = dbProcessor.getConnection(Connect.getUrl(), Connect.getUser(), Connect.getPassword());
 
@@ -81,7 +79,6 @@ public class Query implements Create {
         ResultSet resultSet = statement.executeQuery(totalS);
         while (resultSet.next()) {
             int total = resultSet.getInt("sum(total)");
-
             Total totalSalary = new Total(total);
             System.out.println(totalSalary);
         }

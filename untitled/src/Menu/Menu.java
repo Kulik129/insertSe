@@ -1,7 +1,6 @@
 package Menu;
 
 import DatabaseQueries.NewQuery;
-import DatabaseQueries.Query;
 
 import java.sql.SQLException;
 import java.util.InputMismatchException;
@@ -9,6 +8,7 @@ import java.util.Scanner;
 
 public class Menu {
     public void navigation() throws SQLException {
+        WorkingWithTheUser action = new WorkingWithTheUser();
         NewQuery newQuery = new NewQuery();
 
         try {
@@ -29,32 +29,16 @@ public class Menu {
 
 
             if (choice == 1) {
-                In i = new In();
-                i.dataEntry();
+                action.dataEntry();
             }
             if (choice == 2) {
-                String select = "SELECT * FROM salary_jan";
-                newQuery.outputtingAll(select);
-                System.out.println("Нажмите Y если желаете продолжить");
-                String ch = in.next();
-                if (ch.equals("y")) {
-                    navigation();
-                }
+                action.outputAll();
             }
             if (choice == 3) {
-                String delete = "DELETE FROM salary_jan WHERE shop = ?";
-                System.out.println("введите название магазина");
-                String sh = in.next();
-                newQuery.delete(delete, sh);
-                System.out.println("Нажмите Y если желаете продолжить");
-                String ch = in.next();
-                if (ch.equals("y")) {
-                    navigation();
-                }
+               action.deleteString();
             }
             if (choice == 4) {
-                NewQuery qw = new NewQuery();
-                qw.outputShopTotalOnHand();
+                newQuery.outputShopTotalOnHand();
                 System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
                 if (ch.equals("y")) {
@@ -62,8 +46,7 @@ public class Menu {
                 }
             }
             if (choice == 5) {
-                NewQuery qw = new NewQuery();
-                qw.totalSalary();
+                newQuery.totalSalary();
                 System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
                 if (ch.equals("y")) {
