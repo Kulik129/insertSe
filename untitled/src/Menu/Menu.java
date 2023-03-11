@@ -22,6 +22,8 @@ public class Menu {
                             "\tНажмите 3 если желаете удалить\n" +
                             "+-----------------------------------------------------+\n" +
                             "\tНажмите 4 для чтобы посмотреть з/п на руки и всего за день\n" +
+                            "+-----------------------------------------------------+\n"+
+                            "\tНажмите 5 для чтобы посмотреть всю з/п за месяц \n" +
                             "+-----------------------------------------------------+\n");
             int choice = in.nextInt();
 
@@ -53,6 +55,15 @@ public class Menu {
             if (choice == 4) {
                 NewQuery qw = new NewQuery();
                 qw.outputShopTotalOnHand();
+                System.out.println("Нажмите Y если желаете продолжить");
+                String ch = in.next();
+                if (ch.equals("y")) {
+                    navigation();
+                }
+            }
+            if (choice == 5) {
+                NewQuery qw = new NewQuery();
+                qw.totalSalary();
                 System.out.println("Нажмите Y если желаете продолжить");
                 String ch = in.next();
                 if (ch.equals("y")) {

@@ -11,4 +11,5 @@ public interface Create {
     void outputtingAll(String query) throws SQLException;
 
     void outputShopTotalOnHand() throws SQLException;
+    void totalSalary() throws SQLException;
 }
